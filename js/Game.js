@@ -94,4 +94,42 @@
             this.gameOver();
         }
     }
+
+    /**
+     * End game
+     * @return {boolean} gameWon - whether or not a user has won or lost
+     */
+    gameOver(){
+        let phrase = document.querySelectorAll('.hide');
+        let overlay = document.querySelector('#overlay');
+        let msg = document.querySelector("#game-over-message");
+
+        //display original overlay
+        overlay.style.display = 'block';
+            if(phrase.length === 0) {
+                msg.textContent = "WINNING YO!!!!"
+                overlay.className = "win"
+            } else {
+                msg.textContent = "Better Luck Next Time! GG Tho!"
+                overlay.className = "lose"
+            }
+    }
+    /**
+     * Reset the game board
+     */
+    resetGame(){
+        let li = document.querySelectorAll('#phrase ul li');
+        let ul = document.querySelector('#phrase ul');
+        for(ul of li) {
+            ul.remove(li);
+        }
+        let key = document.querySelectorAll('#qwerty .keyrow button');
+        for(let i = 0; i < key.length; i++){
+            key[i].removeAttribute('disabled');
+            key[i].className = 'key';
+        }
+
+        let hearts = document.querySelectorAll('.tries img');
+        hearts.forEach(life => life.src = 'images/liveHeart.png');
+    }
  }
