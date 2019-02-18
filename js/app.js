@@ -2,36 +2,17 @@
  * Project 4 - OOP Game App
  * app.js */
 
- let game;
-    const startButton = document.querySelector("#btn_reset");
-    const keyboard = document.querySelector('#qwerty');
-    const keys = document.querySelectorAll('#qwerty .keyrow button');
-    const overlay = document.querySelector('#overlay');
+const startGameButton = document.getElementById("btn__reset");
+const game = new Game();
 
-const start = () => {
-    game = new Game ();
+/* Start game by clicking, New game object is called */
+startGameButton.addEventListener('click', () => {
     game.startGame();
-}
-
-startButton.addEventListener('click', (e) => {
-    $('#overlay').fadeToggle('slow', () => start());
+    game.resetGame();
 });
 
-keyboard.addEventListener('click', (e) => {
+
+document.getElementById('qwerty').addEventListener('click', (e) => {
     game.handleInteraction(e.target);
 });
 
-document.addEventListener('keydown', (e) => {
-    if(e.which === 13 && overlay.style.display !== 'none'){
-        $('#overlay').fadeToggle('slow', () => start());
-    }
-    for(let i = 0; i < keys.length; i++) {
-        if(e.key === keys[i].textContent) {
-            if(keys[i].classList.contains('wrong')) {
-                e.preventDefault();
-            } else {
-                game.handleInteraction(keys(i));
-            }
-        }
-    }
-});

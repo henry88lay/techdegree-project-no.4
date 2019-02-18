@@ -55,7 +55,7 @@
             let letter = button.textContent; 
             button.setAttribute('disabled',true);
 
-            let checkedLetter = this.activePhrase.checkedLetter(letter); //DRY Principle always!
+            let checkedLetter = this.activePhrase.checkLetter(letter); //DRY Principle always!
             
             if(!checkedLetter) {
                 this.removeLife();
