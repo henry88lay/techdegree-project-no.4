@@ -43,4 +43,22 @@
              return false;
          }
      }
+
+     /**
+      * Display passed letter on screen after match is found
+      * @param (string) letter - Letter to display
+      */
+
+      showMatchedLetter(letter) {
+          const ul = document.querySelector('ul');
+          const li = ul.querySelectorAll('li');
+
+          for (let i = 0; i < li.length; i++) {
+              if(letter === li[i].textContent) {
+                  li[i].className = 'show';
+              }
+          }
+      }
+
+      
  }
