@@ -13,11 +13,11 @@ const start = () => {
     game.startGame();
 }
 
-startButton.addEventListener('click', () => {
+startButton.addEventListener('click', (e) => {
     $('#overlay').fadeToggle('slow', () => start());
 });
 
-keyboard.addEventListener('click', () => {
+keyboard.addEventListener('click', (e) => {
     game.handleInteraction(e.target);
 });
 
