@@ -15,16 +15,17 @@
     */
     
     createPhrases() {
-        const phrases = [
-            new Phrase("Sexy 4 Eva"),
-            new Phrase("Crazy Rich Asians"),
-            new Phrase("Rolex GMT Master II"),
-            new Phrase("Rolex Panda Ceramic Daytona"),
-            new Phrase("What has a stronger pull? Fear or Money"),
-            new Phrase("Value Driven Developer"),
-            new Phrase("Richard Mille Felipe Massa")
-            ];
-        return phrases;
+        let phrases = [];
+        
+            phrases.push(new Phrase("Sexy for Eva"));
+            phrases.push(new Phrase("Crazy Rich Asians"));
+            phrases.push(new Phrase("Rolex GMT Master II"));
+            phrases.push(new Phrase("Rolex Panda Ceramic Daytona"));
+            phrases.push(new Phrase("Fear or Money"));
+            phrases.push(new Phrase("Value Driven Developer"));
+            phrases.push(new Phrase("Richard Mille Felipe Massa"));
+        
+            return phrases;
      }
 
     /**
@@ -32,17 +33,18 @@
      * @return {Object} Phrase object chosen to be used
      */
     getRandomPhrase() {
-        return this.phrases[Math.floor(Math.floor(Math.random() * this.phrases.length))];
+        const randomNum = Math.floor(Math.random() * 7);
+        return this.phrases[randomNum];
     }
 
     /**
      * Begins game by selecting a random phrase and display to user.
      */
     startGame() {
+        this.resetGame();
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
-        this.resetGame(); // calls the reset game for a new game
     }
 
     /**
@@ -89,7 +91,7 @@
         this.missed += 1;
         // changes heart image
         let hearts = document.querySelectorAll('.tries img');
-        hearts[this.missed -1].src = 'images/losingHeart.png';
+        hearts[this.missed -1].src = 'images/lostHeart.png';
         if(this.missed === 5) {
             this.gameOver();
         }
