@@ -87,14 +87,23 @@
      * Remove life counter
      */
     removeLife(){
-        //increment this.missed by one
         this.missed += 1;
-        // changes heart image
-        let hearts = document.querySelectorAll('.tries img');
-        hearts[this.missed -1].src = 'images/lostHeart.png';
-        if(this.missed === 5) {
-            this.gameOver();
-        }
+        const img = document.querySelectorAll('img');
+   
+          for (let i = 0; i < img.length; i++) {
+              if (this.missed === 1) {
+                  img[0].src = 'images/lostHeart.png';
+              } else if (this.missed === 2) {
+                  img[1].src = 'images/lostHeart.png';
+              } else if (this.missed === 3) {
+                  img[2].src = 'images/lostHeart.png';
+              }  else if (this.missed === 4) {
+                  img[3].src = 'images/lostHeart.png';
+              } else if (this.missed === 5) {
+                  img[4].src = 'images/lostHeart.png';
+                  this.gameOver(false);
+              }   
+          }
     }
 
     /**
@@ -102,36 +111,48 @@
      * @return {boolean} gameWon - whether or not a user has won or lost
      */
     gameOver(){
-        let phrase = document.querySelectorAll('.hide');
-        let overlay = document.querySelector('#overlay');
-        let msg = document.querySelector("#game-over-message");
-
-        //display original overlay
-        overlay.style.display = 'block';
-            if(phrase.length === 0) {
-                msg.textContent = "WINNING YO!!!!"
-                overlay.className = "win"
-            } else {
-                msg.textContent = "Better Luck Next Time! GG Tho!"
-                overlay.className = "lose"
-            }
+        const overlayDiv =  document.getElementById('overlay');
+        const gameOverMessage = document.getElementById('game-over-message');
+        const showAnswer = document.getElementById('show-answer');
+     
+        if (this.missed <= 4) {
+            gameWon == true;
+            overlayDiv.className = 'win';
+            showAnswer.textContent = `Answer is: ${game.activePhrase.phrase}`;
+            gameOverMessage.textContent = 'Great job!';
+            document.getElementById('overlay').style.display = '';      
+        } else {
+            gameWon == false;
+            overlayDiv.className ='lose';
+            showAnswer.textContent = `Answer is: ${game.activePhrase.phrase}`;
+            gameOverMessage.textContent = 'Sorry, better luck next time';
+            document.getElementById('overlay').style.display = '';
+        }
     }
     /**
      * Reset the game board
      */
-    resetGame(){
-        let li = document.querySelectorAll('#phrase ul li');
-        let ul = document.querySelector('#phrase ul');
-        for(ul of li) {
-            ul.remove(li);
+    resetGame() {
+        const ul = document.querySelector('ul');
+        const li = ul.querySelectorAll('li');
+        const qwertyDiv = document.getElementById('qwerty');
+        const buttons = qwertyDiv.querySelectorAll('button');
+        const img = document.querySelectorAll('img');
+ 
+        for (let i = 0; i < li.length; i++) {
+            li[i].remove();       
         }
-        let key = document.querySelectorAll('#qwerty .keyrow button');
-        for(let i = 0; i < key.length; i++){
-            key[i].removeAttribute('disabled');
-            key[i].className = 'key';
+ 
+        this.activePhrase = this.getRandomPhrase(); //shows the active phrase
+        this.activePhrase.addPhraseToDisplay();
+ 
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].disabled = false;
+            buttons[i].className = 'key';
         }
-
-        let hearts = document.querySelectorAll('.tries img');
-        hearts.forEach(life => life.src = 'images/liveHeart.png');
+ 
+        img.forEach(image => image.src = 'images/liveHeart.png'); //resets the heart images
+  
     }
+ 
  }
