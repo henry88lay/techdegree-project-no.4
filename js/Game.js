@@ -20,7 +20,14 @@ class Game {
         document.querySelector('#overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
-    }
+      }
+
+      //Returns a random phrase from the phrases array
+    getRandomPhrase() {
+        let random = Math.floor(Math.random() * this.phrases.length);
+        let randPhrase = this.phrases[random];
+        return randPhrase;
+        };
 
     //Returns an array of 5 unique phrases grabbed from the arrayLiteral
     createPhrases() {
@@ -43,7 +50,7 @@ class Game {
     //Returns boolean value reflecting game status
     checkForWin() {
         //Contains the amount of elements with the shown class, which is added when player guesses letter correctly
-        const totalShown = docuement.querySelectorAll('.show').length;
+        const totalShown = document.querySelectorAll('.show').length;
         //contains the number of letters in the phrase
         const totalLetters = document.querySelectorAll('.letter').length;
         const startScreen = document.querySelector('#overlay');

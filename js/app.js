@@ -22,7 +22,7 @@ let phrase;
 function startGame() {
     game = new Game(phrasesLiteral);
     game.startGame();
-    game.initialized()
+    game.initialize()
 }
 
 // Start Game Overlay Hidden
