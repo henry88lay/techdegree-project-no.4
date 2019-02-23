@@ -40,4 +40,47 @@ class Game {
         return phrases;
     }
 
+    //Returns boolean value reflecting game status
+    checkForWin() {
+        //Contains the amount of elements with the shown class, which is added when player guesses letter correctly
+        const totalShown = docuement.querySelectorAll('.show').length;
+        //contains the number of letters in the phrase
+        const totalLetters = document.querySelectorAll('.letter').length;
+        const startScreen = document.querySelector('#overlay');
+        const h2 = document.querySelector('h2.title');
+        // if total number of letters guessed correctly equals the number of letters
+        if (totalShown === totalLetters) {
+            startScreen.style.display = '';
+            startScreen.className = 'win';
+            startScreen.textContent = 'Play Again!?'
+            h2.textContent = 'Well Done! You Win!'
+            this.missed = 0;
+            return true;
+        } else if (this.missed >= tries.length) {
+            startScreen.style.display = '';
+            startScreen.className = 'lose';
+            startScreen.textContent = 'Try Again!'
+            h2.textContent = 'You Lose! Better Luck Next Time!'
+            this.missed = 0;
+            return false;            
+        }
+    }
+
+    //Remove heart and replace with lostHeart img 
+    removeLife(letter) {
+        tries[tries.length-1-this.missed].setAttribute('src', 'images/lostHeart.png');
+        this.missed += 1;
+    }
+
+    //qwerty keyboard classes only contain the 'key' class
+    intiailize() {
+        const chosen = document.querySelectorAll('.key');
+
+        for(let i = 0; i < chosen.length; i++) {
+            chosen[i].removeAttribute("disabled");
+            chosen[i].className = 'key';
+        }
+
+        
+    }
 }
