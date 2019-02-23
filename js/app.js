@@ -41,7 +41,7 @@ qwertyButtons.addEventListener('click', (event) => {
 
 //Event listener triggered on keyboard.
 window.addEventListener('keypress', (e) => {
-    if(docuement.querySelector('#overlay').style.display === '') {
+    if(document.querySelector('#overlay').style.display === '') {
         if (e.keyCode == '13') {
             startGame();
         }

@@ -59,7 +59,7 @@ class Game {
         if (totalShown === totalLetters) {
             startScreen.style.display = '';
             startScreen.className = 'win';
-            startScreen.textContent = 'Play Again!?'
+            startScreen.textContent = 'Winner Winner Chicken Dinner!'
             h2.textContent = 'Well Done! You Win!'
             this.missed = 0;
             return true;
