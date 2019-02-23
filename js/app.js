@@ -11,8 +11,8 @@ const phrasesLiteral = [
     "independence is happiness"
 ]
 const qwertyButtons = document.querySelector('#qwerty');
-const keys = document.querySelectorAll('.keys');
-const tries = docuement.querySelectorAll('li.tries img');
+const keys = document.querySelectorAll('.key');
+const tries = document.querySelectorAll('li.tries img');
 const startButton = document.querySelector('#btn__reset');
 
 let game;
@@ -22,7 +22,7 @@ let phrase;
 function startGame() {
     game = new Game(phrasesLiteral);
     game.startGame();
-    game.initialized();
+    game.initialized()
 }
 
 // Start Game Overlay Hidden
