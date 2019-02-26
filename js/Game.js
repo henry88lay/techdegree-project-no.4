@@ -65,14 +65,13 @@ class Game {
         h2.textContent = "You Win!"
         this.missed = 0;
         return true;
-     //If the amount of incorrect attempts is equal to or greater than the lenght of "tries", the overlay is displayed with updated text
+     //If the amount of incorrect attempts is equal to or greater than the length of "tries", the overlay is displayed with updated text
       } else if (this.missed >= tries.length) {
         startScreen.style.display = '';
         startScreen.className = 'lose';
         startButton.textContent = 'Try Again'
         h2.textContent = "You Lose!"
         this.missed = 0;
-        console.log('working')
         return false;
       }
     }
