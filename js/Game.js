@@ -51,6 +51,13 @@ class Game {
   
   //Returns a boolean value which reflects the game status
     checkForWin() {
+      let hidden = document.querySelectorAll('.hide');
+      if(hidden.length === 0){
+        this.gameOver();
+      }
+    }
+
+    gameOver() {      
       //Contains the amount of elements with the shown class, which is added when a player guesses a letter correctly
       const totalShown = document.querySelectorAll('.show').length;
       //Contains the amount of letters in the phrase
