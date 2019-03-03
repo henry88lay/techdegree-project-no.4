@@ -10,48 +10,21 @@ const phrasesLiteral = [
     "the only journey is the one within",
     "independence is happiness"
 ]
-const qwertyButtons = document.querySelector('#qwerty');
-const keys = document.querySelectorAll('.key');
-const tries = document.querySelectorAll('li.tries img');
-const startButton = document.querySelector('#btn__reset');
-
-let game;
-let phrase;
-
-//Creates a new instance Game Object, and calls startGame and initialize methods to refresh.
-function startGame() {
-    game = new Game(phrasesLiteral);
+let game; 
+const btnStart = document.querySelector("#btn__reset");
+btnStart.addEventListener('click', function() {
+    game = new Game();
+    game.phrases = game.createPhrase();
     game.startGame();
-    game.initialize()
-}
-
-// Start Game Overlay Hidden
-startButton.addEventListener('click', () => {
-    startGame();
 });
 
-//Event listener added to onscreen keyboard.
-qwertyButtons.addEventListener('click', (event) => {
-    if (event.target.tagName == 'BUTTON') {
-        let letter = event.target;
-        game.handleInteraction(letter);
+// Select all keyboars on the screen
+// Attach an eventlistener to listen for the selected letter
+const keyButtons = document.querySelector('#qwerty');
+keyButtons.addEventListener('click', e => {
+    if(e.target.tagName === 'BUTTON') {
+        // This will make a call to handle all interactions regarding:
+        game.handleInteraction(e.target);
     }
-    game.checkForWin();
-});
 
-//Event listener triggered on keyboard.
-window.addEventListener('keypress', (e) => {
-    if(document.querySelector('#overlay').style.display === '') {
-        if (e.keyCode == '13') {
-            startGame();
-        }
-    }
-    game.activePhrase.checkLetter(event.key);
-    for(i=0; i<keys.length; i++) {
-        if(e.key === keys[i].textContent) {
-            let letter = keys[i];
-            game.handleInteraction(letter);
-        }
-    }
-    game.checkForWin();
 })

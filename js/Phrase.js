@@ -5,51 +5,58 @@
 class Phrase {
 
     constructor(phrase) {
-        this.phrase = phrase;
+        this.phrase = phrase.toLowerCase();
     }
-
-    //This method lopps through the characters in the phrase and creates list items for each letter then appends them insight of the ul with the id #phrase
+    /**
+    * Display phrase on game board
+    */
     addPhraseToDisplay() {
-        const ulOfPhrases = document.querySelector('#phrase ul');
-        for(let i=0; i < this.phrase.length; i++) {
-        let liPhrase = document.createElement('li');
-        liPhrase.textContent = this.phrase[i];
-        if (liPhrase.textContent == ' ') {
-            liPhrase.className = 'space';
-        } else {
-            liPhrase.className = 'letter';
+        const text = this.phrase;
+        const phraseDiv = document.querySelector('#phrase');
+        const phraseList = document.getElementsByTagName('ul')[0];     
+        
+
+        // Uses an ES6 method to iterate over an array to find each character of the phrase
+        // Returns a list of characters which will be appended to the phrase div
+        for(const character of text) {
+            const phraseLI = document.createElement('li');
+            phraseLI.classList.add('letter');
+            if(character === ' ') {
+                phraseLI.classList.remove('letter');
+                phraseLI.classList.add('space');
+            }
+            phraseLI.textContent = character;
+            phraseList.appendChild(phraseLI);
         }
-        ulOfPhrases.appendChild(liPhrase);
-        }
+
+        phraseDiv.appendChild(phraseList);
+        return phraseDiv;
     }
 
-    /*This methods checks to see if the letter selected excists in the current game phrase.
-     *The Target that triggers the event is passed as an argument.
-     *The method will either return the letter contained in the prase or return null. */
-     checkLetter(letter) {
-         //letterFound is declared as false and will only become true if letter shows up in following loop.
-         let letterFound = false;
-         const letters = document.querySelectorAll('.letter');
+    /**
+    * Checks if passed letter is in phrase
+    * @param (string) letter - Letter to check
+    */
+    checkLetter(letter) {
+        let lettersInPhrase = this.phrase;
+        if(lettersInPhrase.includes(letter)) {
+            return true
+        } else {
+            return false;
+        }
+    }
+    /**
+    * Displays passed letter on screen after a match is found
+    * @param (string) letter - Letter to display
+    */
+    showMatchedLetter(letter) {
 
-         for(let i=0; i < letters.length; i++) {
-             if (letters[i].textContent.toUpperCase() === letter.toUpperCase()) {
-                 letterFound = true;
-                 this.showMatchedLetter(letters[i]);
-             }
-         }
-            if(letterFound) {
-                return letter;
-            }
-            return null;
-     }
-
-     showMatchedLetter(letter) {
         let letters = document.querySelectorAll('.letter');
         for(let i = 0; i < letters.length; i+=1) {
             if(letter === letters[i].textContent) {
                 letters[i].className = 'show';
             }
-     }
+        }
     }
-
+    
 }
