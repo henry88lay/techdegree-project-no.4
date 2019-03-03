@@ -44,7 +44,12 @@ class Phrase {
      }
 
      showMatchedLetter(letter) {
-         letter.className += " show"
+        let letters = document.querySelectorAll('.letter');
+        for(let i = 0; i < letters.length; i+=1) {
+            if(letter === letters[i].textContent) {
+                letters[i].className = 'show';
+            }
      }
+    }
 
 }

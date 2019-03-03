@@ -115,21 +115,29 @@ class Game {
       this.startGame();
     }
   
-    //Method takes in the letter that triggers the event as an argument
-    handleInteraction(letter) {
-      //letter selected is disabled so it cannot be chosen again
-      letter.setAttribute('disabled', true);
-      //userAttempts stores the value returned by the checkLetter method.
-      let userAttempt = this.activePhrase.checkLetter(letter.textContent);
-      //If player answers incorrectly the removeLife method is called and the "wrong" class is added to the letter
-      if (userAttempt === null  && letter.className != "key wrong"){
-        game.removeLife();
-        letter.className += " wrong";
+    handleInteraction(button) {
+      let btnLetter = button.textContent;
+
+      // If letter is in phrase, show it to the user
+      // disable the onscreen letter button
+      // mark as chosen or wrong
+      // End game or remove life
+      if(this.activePhrase.checkLetter(btnLetter)) {
+          // Log to console if letter is in the phrase
+          console.log(`Letter ${btnLetter} is within the phrase`);
+          game.activePhrase.showMatchedLetter(btnLetter);
+          button.disabled = true;
+          button.className = 'chosen';
+          if(game.checkForWin()) {
+              game.gameOver(true);
+          }
+      } else {
+          button.disabled = true;
+          button.className = 'wrong';
+          game.removeLife();
+          // Log to console if letter is not in the phrase
+          console.log(`Letter ${btnLetter} is not within the phrase`);
       }
-      //If player answers correctly the "chosen" class is added to the letter
-      else if (userAttempt != null && letter.className != "key chosen") {
-        letter.className += " chosen";
-      }
-    }
+  }
   
   }
