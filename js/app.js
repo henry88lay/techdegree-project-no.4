@@ -2,14 +2,6 @@
  * Project 4 - OOP Game App
  * app.js */
 
-// Global Variables
-const phrasesLiteral = [
-    "there is nothing permanent except change",
-    "you cannot shake hands with a clenched fist",
-    "Learning never exhuasts the mind",
-    "the only journey is the one within",
-    "independence is happiness"
-]
 let game; 
 const btnStart = document.querySelector("#btn__reset");
 btnStart.addEventListener('click', function() {

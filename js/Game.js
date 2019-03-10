@@ -82,6 +82,9 @@ class Game {
 
       if(this.missed === 5) {
           this.gameOver(false); // GameOver(gameWon) => false
+      } else {
+          const heartImg = document.querySelector("img[src='images/liveHeart.png']");
+          heartImg.src="images/lostHeart.png";
       }
   }
   
@@ -104,7 +107,7 @@ class Game {
       } else {
           overlay.className = 'lose';
           overlay.style.display = 'block';
-          header.textContent = 'Game over! You ran out of lives, try again and give it your best shot!';
+          header.textContent = 'Game over! try again!';
 
           // Reset game if lost
           this.resetGame(); 
