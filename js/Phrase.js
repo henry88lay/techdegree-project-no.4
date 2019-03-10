@@ -1,62 +1,59 @@
 /* Treehouse FSJS Techdegree
  * Project 4 - OOP Game App
  * Phrase.js */
-
 class Phrase {
-
     constructor(phrase) {
+        //lowercase version of phrase set to Phrase object
         this.phrase = phrase.toLowerCase();
     }
+
     /**
     * Display phrase on game board
     */
     addPhraseToDisplay() {
-        const text = this.phrase;
-        const phraseDiv = document.querySelector('#phrase');
-        const phraseList = document.getElementsByTagName('ul')[0];     
-        
-
-        // Uses an ES6 method to iterate over an array to find each character of the phrase
-        // Returns a list of characters which will be appended to the phrase div
-        for(const character of text) {
-            const phraseLI = document.createElement('li');
-            phraseLI.classList.add('letter');
-            if(character === ' ') {
-                phraseLI.classList.remove('letter');
-                phraseLI.classList.add('space');
+        //grab <ul> element
+        const ul = document.querySelector('ul');
+        //set variable to store string
+        let elem = '';
+        for (let i=0; i < this.phrase.length; i++) {
+                       
+            if (this.phrase[i] == ' ') {
+                elem += "<li class='space'> </li>";
+            } else {
+                elem += `<li class='hide letter ${this.phrase[i]}'>${this.phrase[i]}</li>`
             }
-            phraseLI.textContent = character;
-            phraseList.appendChild(phraseLI);
-        }
+               
+         }
 
-        phraseDiv.appendChild(phraseList);
-        return phraseDiv;
+         ul.innerHTML = elem;
+
     }
-
     /**
     * Checks if passed letter is in phrase
     * @param (string) letter - Letter to check
     */
-    checkLetter(letter) {
-        let lettersInPhrase = this.phrase;
-        if(lettersInPhrase.includes(letter)) {
-            return true
-        } else {
-            return false;
-        }
+    checkLetter(letter){
+        //return matching letter
+        return this.phrase.includes(letter);
     }
     /**
     * Displays passed letter on screen after a match is found
     * @param (string) letter - Letter to display
-    */
-    showMatchedLetter(letter) {
-
-        let letters = document.querySelectorAll('.letter');
-        for(let i = 0; i < letters.length; i+=1) {
-            if(letter === letters[i].textContent) {
-                letters[i].className = 'show';
-            }
+    */    
+    showMatchedLetter(letter){
+        //set string for reference
+        const string = `.hide.letter.${letter}`;
+        //use string to match elements
+        const matchingLetters = document.querySelectorAll(string);
+        //for each matching element
+        for (let each of matchingLetters){
+            //remove the hide class
+            each.classList.remove('hide');
+            //add the show class
+            each.classList.add('show');
         }
+
     }
-    
+
+
 }
