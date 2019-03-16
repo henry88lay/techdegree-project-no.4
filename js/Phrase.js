@@ -2,6 +2,9 @@
  * Project 4 - OOP Game App
  * Phrase.js */
 
+ /**
+  * This Class handles the creation of Phrases
+  */
  class Phrase {
-     
+
  };
