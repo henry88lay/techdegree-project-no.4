@@ -6,8 +6,3 @@
  /**
   * This is the the function for the Start Button
   */
- let Game = '';
-
- document.querySelector("btn__reset").addEventListener('click', function(){
-
- });
