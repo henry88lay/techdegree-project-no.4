@@ -6,3 +6,6 @@
  /**
   * This is the the function for the Start Button
   */
+
+ const phrase = new Phrase('Life is like a box of chocolates');
+ console.log(`Phrase - phrase: ${phrase.phrase}`);

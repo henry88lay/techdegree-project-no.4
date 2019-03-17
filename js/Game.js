@@ -11,5 +11,14 @@
   */
 
  class Game {
+    constructor() {
+        //Tracking the missed guesses by the player
+        this.missed = 0;
+        //An array of Phrases Created here
+        this.phrases = this.createPhrases();
+        //Selecting a random phrase from the array
+        this.activePhrase = null;
+        }
+
 
  };
