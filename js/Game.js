@@ -60,4 +60,61 @@
         this.activePhrase.addPhraseToDisplay();
     };
 
+    /**
+    * Checks for winning move
+    * @return {boolean} True if game has been won, false if game wasn't
+    won
+    */
+    checkForWin() {
+      let hiddenLetters = document.querySelectorAll('.hide');
+
+      // If letters return false
+      if (hiddenLetters === 0) {
+          return true;
+      } else {
+          return false;
+      }
+
+    };
+
+    /**
+    * Increases the value of the missed property
+    * Removes a life from the scoreboard
+    * Checks if player has remaining lives and ends game if player is out
+    */
+    removeLife() {
+        // Incremental miss after each miss
+        this.missed += 1;
+        // check number of misses and calling game over
+        if (this.missed === 5) {
+            this.gameOver(false);
+        } else {
+            this.wrongAnswer();
+            const heartImg = document.querySelector("img[src='images/liveHeart.png']");
+            heartImg.src="images/lostHeart.png";
+        }
+    };
+
+    /**
+    * Displays game over message
+    * @param {boolean} gameWon - Whether or not the user won the game
+    */
+    gameOver(gameWon) {
+        
+        //setting the overlay display back to block
+        document.querySelector('#overlay').style.display = '';
+
+        //make reset button visable
+        document.querySelector('button').style.display = '';
+
+        // if the player won
+        if (gameWon) {
+            document.querySelector('#overlay').setAttribute('class', 'win');
+            document.querySelector('#game-over-message').innerHTML = 'You did it! You Won!'
+        } else {
+            // if the player lost
+            document.querySelector('#overlay').setAttribute('class', 'lose');
+            document.querySelector('#game-over-message').innerHTML = 'Better Luck Next Time! Try Again!?'
+        }
+    };
  };
