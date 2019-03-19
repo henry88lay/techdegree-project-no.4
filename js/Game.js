@@ -117,4 +117,39 @@
             document.querySelector('#game-over-message').innerHTML = 'Better Luck Next Time! Try Again!?'
         }
     };
+
+    /**
+    * Handles onscreen keyboard button clicks
+    * @param (HTMLButtonElement) button - The clicked button element
+    */
+    handleInteraction(button) {
+        if (button.tagName === 'BUTTON') {
+            
+            // capture selected letter
+            let letter = button.textContext;
+            button.setAttribute('disabled', true);
+
+            // match letter with phrase
+            let checkedLetter = this.activePhrase.checkLetter(letter);
+            
+            if (!checkedLetter) {
+                this.removeLife();
+                button.className = 'wrong'
+            } else {
+                button.className = 'chosen'
+            }
+        }
+
+        //checking for a game win
+        if (this.checkForWin() == true) {
+
+            this.gameOver(true);
+
+        }
+
+    // reset the game
+    resetGame() {
+        
+    }
+    };
  };
