@@ -56,7 +56,7 @@
         // hide random phrase
         document.querySelector('#overlay').style.display = 'none';
 
-        this.activePhrase = this.activePhrase();
+        this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     };
 
