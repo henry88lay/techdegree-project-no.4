@@ -16,13 +16,13 @@
     const ul = document.querySelector('ul');
 
     // setting variable to store string phrase
-    let element = '';
+    let elem = '';
     for (let i=0; i < this.phrase.length; i++) {
 
         if (this.phrase[i] == ' ') {
-            element += "<li class='space'> </li>";
+            elem += "<li class='space'> </li>";
         } else {
-            element += `<li class='hide letter $hide letter ${this.phrase[i]}'>${this.phrase[i]}</li>`
+            elem += `<li class='hide letter $hide letter ${this.phrase[i]}'>${this.phrase[i]}</li>`
         }
     }
     ul.innterHTML = element;
