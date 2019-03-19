@@ -3,7 +3,7 @@
  * app.js */
 
 //start game button
-let game = '';
+let game;
 
 document.getElementById('btn__reset').addEventListener('click', function() {
     game = new Game();
